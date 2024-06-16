@@ -1,0 +1,41 @@
+name: Continuous tests/builds/prerelease
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "8.x"
+
+      - name: Pack ViteFest
+        working-directory: src/ViteFest
+        run: dotnet pack -c Release -o ../../dist
+
+      - name: Pack ViteFest.AspNetCore
+        working-directory: src/ViteFest.AspNetCore
+        run: dotnet pack -c Release -o ../../dist
+
+      - name: Push Nuget packages
+        working-directory: dist
+        env:
+          NUGET_API: https://api.nuget.org/v3/index.json
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./*.nupkg -s $NUGET_API -k $NUGET_API_KEY
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/**/*

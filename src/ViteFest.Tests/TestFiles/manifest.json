@@ -1,0 +1,27 @@
+{
+  "../../node_modules/@fontsource-variable/inter/files/inter-latin-slnt-normal.woff2": {
+    "file": "assets/inter-latin-slnt-normal-BpMivaJw.woff2",
+    "src": "../../node_modules/@fontsource-variable/inter/files/inter-latin-slnt-normal.woff2"
+  },
+  "Components/Common/Logotype.svg": {
+    "file": "assets/Logotype-BQihiMnY.svg",
+    "src": "Components/Common/Logotype.svg"
+  },
+  "Components/Home.ts": {
+    "file": "assets/Home-B2lgNECc.js",
+    "name": "Home",
+    "src": "Components/Home.ts",
+    "isEntry": true,
+    "css": [
+      "assets/Home-Bs7ZzuBZ.css"
+    ],
+    "assets": [
+      "assets/Logotype-BQihiMnY.svg"
+    ]
+  },
+  "Components/Root.css": {
+    "file": "assets/Root-B-NYCzS9.css",
+    "src": "Components/Root.css",
+    "isEntry": true
+  }
+}
