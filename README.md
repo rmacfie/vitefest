@@ -31,10 +31,15 @@ builder.Services.AddViteFest(o =>
 ```
 
 
-`Login.cshtml`:
+`SomePage.cshtml` or `SomePage.razor`:
 ```html
 @inject ViteFest.IVite Vite
 
 <script src='@Vite.GetUrl("ClientApp/shared.ts")'></script>
 <script src='@Vite.GetUrl("ClientApp/login.ts")'></script>
+
+@foreach (var cssUrl in Vite.GetCssUrls("ClientApp/shared.ts"))
+{
+  <link rel="stylesheet" href="@cssUrl" />
+}
 ```
