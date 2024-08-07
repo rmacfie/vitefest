@@ -47,10 +47,16 @@ public static class ViteServiceExtensions
             );
         });
 
-        services.AddSingleton<IVite, Vite>();
-        services.AddSingleton<IViteManifestReader, ViteManifestReader>();
-        services.AddSingleton<IViteResourceMapper, ViteResourceMapper>();
-        services.AddSingleton<IViteState, ViteState>();
+        services.AddSingleton<IViteManifestReader>(x => new ViteManifestReader());
+        services.AddSingleton<IViteResourceMapper>(x => new ViteResourceMapper(
+            x.GetRequiredService<IViteEnvironment>()
+        ));
+        services.AddSingleton<IViteState>(x => new ViteState(
+            x.GetRequiredService<IViteEnvironment>(),
+            x.GetRequiredService<IViteManifestReader>(),
+            x.GetRequiredService<IViteResourceMapper>()
+        ));
+        services.AddSingleton<IVite>(x => new Vite(x.GetRequiredService<IViteState>()));
 
         services.AddHostedService<ViteHostedService>();
 
