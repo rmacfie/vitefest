@@ -13,6 +13,7 @@
     80,
     100
   ],
+  "files.insertFinalNewline": true,
   "[csharp]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "csharpier.csharpier-vscode",
