@@ -2,6 +2,8 @@
 
 Utilize Vite build assets in ASP.NET Core and other .NET applications.
 
+![ViteFest.AspNetCore](https://img.shields.io/nuget/vpre/ViteFest.AspNetCore)
+
 
 ## ASP.NET Core
 
